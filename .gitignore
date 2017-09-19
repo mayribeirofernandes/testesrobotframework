@@ -1,9 +1,6 @@
 #robotframework
-ExemploSelenium/*.html
-ExemploSelenium/*.xml
-ExemploSelenium/*.log
-ExemploSelenium/*.png
-ExemploBDD/*.html
-ExemploBDD/*.xml
-ExemploBDD/*.log
-ExemploBDD/*.png
+*.html
+*.xml
+*.log
+*.png
+Results/
