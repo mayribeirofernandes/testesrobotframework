@@ -13,6 +13,11 @@ Cenário 01: Consulta de endereço existente
     E deve ser mostrada a UF "SC"
     E deve ser mostrado o CEP "88056000"
 
+Cenário 02: Consulta de endereço inexistente
+    Dado que esteja conectado no webservice de consultas de CEP
+    Quando o usuário consultar o CEP "99999-999"
+    Então nenhum dado deve ser mostrado para o CEP "99999999"
+
 *** Keywords ***
 Que esteja conectado no webservice de consultas de CEP
     Conecta ao WebService
@@ -35,3 +40,11 @@ Deve ser mostrada a UF "${UF}"
 
 Deve ser mostrado o CEP "${CEP}"
     Confere CEP       ${CEP}
+
+Nenhum dado deve ser mostrado para o CEP "${CEP}"
+    Confere o status code       200
+    Confere endereço do CEP     ${EMPTY}
+    Confere bairro do CEP       ${EMPTY}
+    Confere cidade do CEP       ${EMPTY}
+    Confere UF do CEP           ${EMPTY}
+    Confere CEP                 ${CEP}
