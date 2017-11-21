@@ -17,5 +17,3 @@ Cenário 02: Consulta de endereço inexistente
     Dado que esteja conectado no webservice de consultas de CEP
     Quando o usuário consultar o CEP "99999-999"
     Então nenhum dado deve ser mostrado para o CEP "99999999"
-
-*** Keywords ***
