@@ -8,6 +8,40 @@ ${APP_KEY}      njMf2EiyQ17g6C3vLUxk1yEsWTforVqf
 ${APP_SECRET}   EgpTuUcM93IqHY8icgR3cK6Cn4bOlkQwSlfLd6ryMjrhhwMW
 
 *** Keywords ***
+#### DADO
+Que esteja conectado no webservice de consultas de CEP
+    Conecta ao WebService
+
+#### QUANDO
+O usuário consultar o CEP "${CEP_CONSULTADO}"   
+    Realiza requisição do CEP   ${CEP_CONSULTADO}
+
+#### ENTÃO
+Deve ser mostrado o endereço "${ENDERECO}"
+    Confere o status code       200
+    Confere endereço do CEP     ${ENDERECO}
+
+Deve ser mostrado o bairro "${BAIRRO}"
+    Confere bairro do CEP       ${BAIRRO}
+
+Deve ser mostrada a cidade "${CIDADE}"  
+    Confere cidade do CEP       ${CIDADE}
+
+Deve ser mostrada a UF "${UF}"  
+    Confere UF do CEP       ${UF}    
+
+Deve ser mostrado o CEP "${CEP}"
+    Confere CEP       ${CEP}
+
+Nenhum dado deve ser mostrado para o CEP "${CEP}"
+    Confere o status code       200
+    Confere endereço do CEP     ${EMPTY}
+    Confere bairro do CEP       ${EMPTY}
+    Confere cidade do CEP       ${EMPTY}
+    Confere UF do CEP           ${EMPTY}
+    Confere CEP                 ${CEP}
+
+#### PASSOS    
 Conecta ao WebService
     Create Session      consultaCEP     ${HOST}
 
