@@ -1,32 +1,33 @@
 *** Settings ***
 Documentation     Sikuli Library Demo
-Test Setup        Add Needed Image Path
+Test Setup        Carrega diretório de imagens
 Test Teardown     Stop Remote Server
 Library           SikuliLibrary
 
 *** Variables ***
+#As imagens da pasta img devem estar de acordo com a interface do seu PC!!!! Tire os prints necessários!
 ${IMAGE_DIR}      ${CURDIR}\\img
 
 *** Test Cases ***
-Windows Notpad Hellow World
-    Open Windows Start Menu
-    Open Notepad
-    Input In Notepad
-    Quit Without Save
+Windows Notepad Hello World
+    Abre o menu inicial do windows
+    Abre o notepad++
+    Digita "Hello Word"
+    Fecha o notepad++
 
 *** Keywords ***
-Add Needed Image Path
+Carrega diretório de imagens
     Add Image Path    ${IMAGE_DIR}
 
-Open Windows Start Menu
+Abre o menu inicial do windows
     Click    windows_start_menu.png
 
-Open Notepad
+Abre o notepad++
     Click    notepad.png
 
-Input In Notepad
-    Input Text    notepad_workspace.png    Hello World
+Digita "${TEXTO}"
+    Input Text    notepad_workspace.png    ${TEXTO}
     Screen Should Contain    helloword.png
 
-Quit Without Save
+Fecha o notepad++
     Click    close.png
