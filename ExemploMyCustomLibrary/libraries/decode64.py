@@ -1,7 +1,7 @@
 import base64
 
 def decode_64_to_string(stringEncoded):
-    print("Deconding [%s] to string." % (stringEncoded,))
+    print("Deconding [%s] to string." % stringEncoded)
 
     if not stringEncoded.endswith("=="):
         stringEncoded = stringEncoded + "=="
