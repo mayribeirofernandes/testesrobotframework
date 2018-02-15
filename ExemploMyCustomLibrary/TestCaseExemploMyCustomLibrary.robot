@@ -1,5 +1,6 @@
 *** Settings ***
 Documentation     Exemplo de uso de uma Library personalizada e criada por mim em Python
+...               Essa library irá decodificar uma string em base64 para UTF-8
 Library           ./libraries/decode64.py
 
 *** Test Cases ***
