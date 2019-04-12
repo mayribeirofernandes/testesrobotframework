@@ -13,7 +13,7 @@ Que esteja conectado no webservice de consultas de CEP
     Conecta ao WebService
 
 #### QUANDO
-O usuário consultar o CEP "${CEP_CONSULTADO}"   
+O usuário consultar o CEP "${CEP_CONSULTADO}"
     Realiza requisição do CEP   ${CEP_CONSULTADO}
 
 #### ENTÃO
@@ -24,30 +24,35 @@ Deve ser mostrado o endereço "${ENDERECO}"
 Deve ser mostrado o bairro "${BAIRRO}"
     Confere bairro do CEP       ${BAIRRO}
 
-Deve ser mostrada a cidade "${CIDADE}"  
+Deve ser mostrada a cidade "${CIDADE}"
     Confere cidade do CEP       ${CIDADE}
 
-Deve ser mostrada a UF "${UF}"  
-    Confere UF do CEP       ${UF}    
+Deve ser mostrada a UF "${UF}"
+    Confere UF do CEP       ${UF}
 
 Deve ser mostrado o CEP "${CEP}"
     Confere CEP       ${CEP}
 
-Nenhum dado deve ser mostrado para o CEP "${CEP}"
-    Confere o status code       200
-    Confere endereço do CEP     ${EMPTY}
-    Confere bairro do CEP       ${EMPTY}
-    Confere cidade do CEP       ${EMPTY}
-    Confere UF do CEP           ${EMPTY}
-    Confere CEP                 ${CEP}
+##Cenário 02 Depreciado em 12/04/2019 devido atualização na API
+# Nenhum dado deve ser mostrado para o CEP "${CEP}"
+#     Confere o status code       200
+#     Confere endereço do CEP     ${EMPTY}
+#     Confere bairro do CEP       ${EMPTY}
+#     Confere cidade do CEP       ${EMPTY}
+#     Confere UF do CEP           ${EMPTY}
+#     Confere CEP                 ${CEP}
 
-#### PASSOS    
+A mensagem de erro "${MSG_ERRO}" deve ser retornada
+    Confere o status code       200
+    Confere mensagem de erro    ${MSG_ERRO}
+
+#### PASSOS
 Conecta ao WebService
     Create Session      consultaCEP     ${HOST}
 
 Realiza requisição do CEP
     [Arguments]         ${CEP_DESEJADO}
-    ${RESPOSTA}=        Get Request  consultaCEP  /${CEP_DESEJADO}/?app_key=${APP_KEY}&app_secret=${APP_SECRET}            
+    ${RESPOSTA}=        Get Request  consultaCEP  /${CEP_DESEJADO}/?app_key=${APP_KEY}&app_secret=${APP_SECRET}
     Log                 Resposta: ${RESPOSTA.text}
     Set Test Variable   ${RESPOSTA}
 
@@ -66,12 +71,16 @@ Confere bairro do CEP
 
 Confere cidade do CEP
     [Arguments]         ${CIDADE}
-    Dictionary Should Contain Item  ${RESPOSTA.json()}  cidade   ${CIDADE}    
+    Dictionary Should Contain Item  ${RESPOSTA.json()}  cidade   ${CIDADE}
 
 Confere UF do CEP
     [Arguments]         ${UF}
-    Dictionary Should Contain Item  ${RESPOSTA.json()}  uf   ${UF}    
+    Dictionary Should Contain Item  ${RESPOSTA.json()}  uf   ${UF}
 
 Confere CEP
     [Arguments]         ${CEP}
-    Dictionary Should Contain Item  ${RESPOSTA.json()}  cep   ${CEP}         
+    Dictionary Should Contain Item  ${RESPOSTA.json()}  cep   ${CEP}
+
+Confere mensagem de erro
+    [Arguments]         ${MSG_ERRO}
+    Dictionary Should Contain Item  ${RESPOSTA.json()}  error   ${MSG_ERRO}
