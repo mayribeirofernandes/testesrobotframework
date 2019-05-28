@@ -9,4 +9,4 @@ Então ${keyword}
     Run keyword   ${keyword}
 
 E ${keyword}
-    Run keyword   ${keyword}            
+    Run keyword   ${keyword}

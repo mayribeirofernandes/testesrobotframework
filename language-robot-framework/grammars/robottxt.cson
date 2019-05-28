@@ -1,0 +1,65 @@
+'comment': '\n\tRobot Framework syntax highlighting for txt format.\t\n\t'
+'fileTypes': [
+  'robot'
+]
+'name': 'Robot Framework'
+'firstLineMatch': '\\*{3} (?i:Settings|Keywords|Variables|Test Cases) \\*{3}'
+'patterns': [
+  {
+    'match': '(^\\*\\*\\*.*?\\*\\*\\*)|((?<=^\\|)\\s+\\*\\*\\*.*?\\*\\*\\*)'
+    'name': 'string.robot.header'
+  }
+  {
+    'include': '#tag'
+  }
+  {
+    'include': '#variables'
+  }
+  {
+    'include': '#comment'
+  }
+  {
+    'begin': '^(?![ \\t\\n\\*\\|])'
+    'contentName': 'keyword.control.robot'
+    'end': '\\s{2,}|\\t|$'
+    'patterns': [
+      {
+        'include': '#variables'
+      }
+    ]
+  }
+  {
+    'match': '(?:^[\\s\\t]+)(Dado|Quando|Então|E|Mas)'
+    'captures':
+      '1':
+        'name': 'keyword.control.robot'
+  }
+]
+'repository':
+  'variables':
+    'begin': '([\\$@&]{)'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.begin.robot'
+      '1':
+        'name': 'text.robot'
+    'end': '(})'
+    'contentName': 'variable.control.robot'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.end.robot'
+      '1':
+        'name': 'text.robot'
+  'comment':
+    'match': '(?:^[\\s\\t]*)(#.*)$'
+    'captures':
+      '1':
+        'name': 'comment.line.robot'
+  'tag':
+    'match': '^[\\s\\t]*(\\[.+\\])'
+    'captures':
+      '0':
+        'name': 'entity.tag.name.robot'
+      '1':
+        'name': 'text.robot'
+'scopeName': 'text.robot'
