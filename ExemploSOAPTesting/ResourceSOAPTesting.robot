@@ -12,15 +12,17 @@ ${WSDL_URL}         http://localhost:8077/servico-intercomunicacao-2.2.2/interco
 &{MSG_ENVIO}        idConsultante=PGMBH    senhaConsultante=12345678    numeroProcesso=50224418220178130024
 
 *** Keywords ***
-Enviar requisição SOAP
+Enviar requisição SOAP preenchendo campo a campo da requisição
     ### Abra a conexão com o SOAP Cliente destino
-    Create Soap Client      ${WSDL_URL}
+    SudsLibrary.Create Soap Client      ${WSDL_URL}
 
     ### Chame o método passando campo a campo da requisição
     ### A resposta será armazenada na variável ${RESPOSTA_XML}
-    ${RESPOSTA_XML}         Call Soap Method        consultarProcesso
+    SudsLibrary.Call Soap Method        consultarProcesso
     ...                     ${MSG_ENVIO.idConsultante}
     ...                     ${MSG_ENVIO.senhaConsultante}
     ...                     ${MSG_ENVIO.numeroProcesso}
 
-    Log                     ${RESPOSTA_XML}
+    ### Pegue o XML recebido
+    ${RESPOSTA_XML}     SudsLibrary.Get Last Received
+    Log                 Mensagem Recebida:\n${RESPOSTA_XML}
