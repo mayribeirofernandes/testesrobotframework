@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SOAP-ENV:Body>
+    <consultarAvisosPendentes>
+      <idConsultante>ID_ANTES</idConsultante>
+      <senhaConsultante>12345678</senhaConsultante>
+      <dataReferencia>19000101000000</dataReferencia>
+      <outroParametro valor="false" nome="atendimentoPlantao">false</outroParametro>
+      <outroParametro valor="true" nome="urgente">true</outroParametro>
+    </consultarAvisosPendentes>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

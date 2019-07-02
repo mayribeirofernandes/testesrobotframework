@@ -1,6 +1,8 @@
 #robotframework
 *.html
-*.xml
 *.log
+*output.xml
 *.png
+*.pyc
+*.zip
 Results/
