@@ -4,6 +4,7 @@ Resource            ../resources/BDDImplementation.robot
 
 *** Test Case ***
 Cenário 01: Consulta de endereço existente
+    [Tags]  jenkins
     Dado que esteja conectado no webservice de consultas de CEP
     Quando o usuário consultar o CEP "88056-000"
     Então deve ser mostrado o endereço "Avenida Luiz Boiteux Piazza"
