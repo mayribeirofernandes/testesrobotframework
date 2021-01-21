@@ -14,6 +14,7 @@ Cenário 01: Consulta de endereço existente
     E deve ser mostrado o CEP "88056000"
 
 Cenário 02: Consulta de endereço inexistente
-    Dado que esteja conectado no webservice de consultas de CEP
-    Quando o usuário consultar o CEP "99999-999"
-    Então a mensagem "CEP INVÁLIDO" deve ser retornada
+    Fail
+    #Dado que esteja conectado no webservice de consultas de CEP
+    #Quando o usuário consultar o CEP "99999-999"
+    #Então a mensagem "CEP INVÁLIDO" deve ser retornada
