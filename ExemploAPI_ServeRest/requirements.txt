@@ -1,0 +1,3 @@
+robotframework==3.2.2
+robotframework-faker==5.0.0
+robotframework-requests==0.8.0
