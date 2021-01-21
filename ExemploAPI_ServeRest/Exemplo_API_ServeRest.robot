@@ -14,7 +14,7 @@ Testar a API pública de estudos serverest
     Cadastrar usuário de teste
     Obter Token
     Cadastrar um produto
-    Listar os produtos cadastrados
+    Listar o produto cadastrado
 
 
 *** Keywords ***
@@ -46,7 +46,7 @@ Cadastrar um produto
     ${ID_PRODUTO_CADASTRADO}  Get From Dictionary    ${RESPONSE.json()}    _id
     Set Suite Variable   ${ID_PRODUTO_CADASTRADO}
 
-Listar os produtos cadastrados
+Listar o produto cadastrado
     ${HEADERS}   Create Dictionary    Authorization=${TOKEN}
     ${PARAMS}    Create Dictionary    _id=${ID_PRODUTO_CADASTRADO}
     ${RESPONSE}  Get Request    alias=${ALIAS}    uri=produtos   params=${PARAMS}  headers=${HEADERS}
