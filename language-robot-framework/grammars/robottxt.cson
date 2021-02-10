@@ -29,7 +29,7 @@
     ]
   }
   {
-    'match': '(?:^[\\s\\t]+)(Dado|Quando|Então|E|Mas)'
+    'match': '(?:^[\\s\\t]+)(Dado|Quando|Então|E |Mas)'
     'captures':
       '1':
         'name': 'keyword.control.robot'
