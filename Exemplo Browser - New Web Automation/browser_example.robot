@@ -1,5 +1,5 @@
 *** Settings ***
-Library    Browser   auto_closing_level=MANUAL
+Library    Browser
 
 
 *** Test Cases ***
@@ -12,14 +12,21 @@ Exemplo com a library Browser
 *** Keywords ***
 Abrindo uma tab no navegador no site
     [Arguments]  ${URL}
-    New Browser  
+    # Por default o browser será headless, aqui optamos por ver o browser
+    New Browser  headless=False
+    
+    # Quero um contexto de teste que GRAVE as execuções
     New Context  recordVideo={'dir': '${OUTPUT_DIR}/video'}
-    New Page  url=${URL}
+
+    # Abro uma ABA no navegador com a URL desejada
+    New Page     url=${URL}
 
 Fazer pesquisa com a frase
     [Arguments]  ${FRASE_PESQUISA}
     Fill Text    css=input[name=q]    ${FRASE_PESQUISA}
-    Click    :nth-match(:text("Pesquisa Google"), 2)
+    Click        :nth-match(:text("Pesquisa Google"), 2)
 
 Verificar se aparece o header do Robot Framework
-    Get Text  h2 > span   ==   Robot Framework
+    # As asserções são feitas com Getters, onde passamos o locator +
+    # a condição + o valor esperado tudo na mesma linha, nessa ordem
+    Get Text     h2 > span   ==   Robot Framework
