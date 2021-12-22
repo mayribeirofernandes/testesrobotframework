@@ -11,7 +11,7 @@ Exemplo com a library Browser
 
 *** Keywords ***
 Abrindo uma tab no navegador no site
-    [Arguments]  ${URL}
+    [Arguments]  ${url}
     # Por default o browser será headless, aqui optamos por ver o browser
     New Browser  headless=False
     
@@ -19,11 +19,11 @@ Abrindo uma tab no navegador no site
     New Context  recordVideo={'dir': '${OUTPUT_DIR}/video'}
 
     # Abro uma ABA no navegador com a URL desejada
-    New Page     url=${URL}
+    New Page     url=${url}
 
 Fazer pesquisa com a frase
-    [Arguments]  ${FRASE_PESQUISA}
-    Fill Text    css=input[name=q]    ${FRASE_PESQUISA}
+    [Arguments]  ${frase_pesquisa}
+    Fill Text    css=input[name=q]    ${frase_pesquisa}
     Click        :nth-match(:text("Pesquisa Google"), 2)
 
 Verificar se aparece o header do Robot Framework
