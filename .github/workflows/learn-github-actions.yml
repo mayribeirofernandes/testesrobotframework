@@ -1,10 +1,12 @@
-  robot_test:
+name: robot_test
+on: [push]
+jobs:
+  Run Robot Framework Tests:
     runs-on: ubuntu-latest
-    name: Run Robot Framework Tests
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Robot Framework
+      - name: Run Robot Framework
         uses: joonvena/robotframework-docker-action@v1.0
         env:
           BROWSER: chrome
