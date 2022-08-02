@@ -1,12 +1,12 @@
-name: learn-github-actions
-on: [push]
-jobs:
-  check-bats-version:
+  robot_test:
     runs-on: ubuntu-latest
+    name: Run Robot Framework Tests
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v1.0
+        env:
+          BROWSER: chrome
+          ROBOT_TESTS_DIR: ${{ github.workspace }}/ExemploSelenium
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
