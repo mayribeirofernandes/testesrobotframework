@@ -32,7 +32,7 @@ jobs:
   browser_test:
     runs-on: ubuntu-latest
     container:
-      image: marketsquare/robotframework-browser:latest
+      image: marketsquare/robotframework-browser
     steps:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
