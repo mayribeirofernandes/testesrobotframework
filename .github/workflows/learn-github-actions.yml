@@ -1,7 +1,7 @@
 name: robot_test
 on: [push]
 jobs:
-  run_robot_framework_selnium_tests:
+  run_robot_framework_selenium_tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -10,11 +10,11 @@ jobs:
         uses: joonvena/robotframework-docker-action@v1.0
         env:
           BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/ExemploSelenium
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+          ROBOT_TESTS_DIR: ./ExemploSelenium
+          ROBOT_REPORTS_DIR: ./reports
       - name: Upload test results
         uses: actions/upload-artifact@v1
         if: always()
         with:
           name: reports
-          path: ${{ github.workspace }}/reports
+          path: ./reports
