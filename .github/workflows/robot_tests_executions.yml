@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.10"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -45,7 +45,7 @@ jobs:
     steps:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
-          robot --version
+          python - m robot --version
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
