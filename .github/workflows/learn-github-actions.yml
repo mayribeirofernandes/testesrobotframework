@@ -1,12 +1,12 @@
 name: robot_test
 on: [push]
 jobs:
-  run_robot_framework_selenium_tests_by_docker:
+  tests:
     runs-on: ubuntu-latest
+    container: 'docker'
+      image: 'Dockerfile'    
     steps:
-      - name: Run Robot Framework API Tests
-        using: 'docker'
-        image: 'Dockerfile'
+      - name: Run Robot Framework API Tests        
         run: robot -d ${{ github.workspace }}/results ${{ github.workspace }}/ExemploAPI_ServeRest/Exemplo_API_ServeRest.robot
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
