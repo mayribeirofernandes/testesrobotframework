@@ -40,7 +40,7 @@ jobs:
     container:
       image: marketsquare/robotframework-browser:latest
       options:
-        --ipc=host --user pwuser --security-opt seccomp=/test/seccomp_profile.json
+        --ipc=host --user pwuser --security-opt seccomp=${{ github.workspace }}/ExemploBrowser/seccomp_profile.json
       volumes:
         - ${{ github.workspace }}/ExemploBrowser:/test
         - ${{ github.workspace }}/ExemploBrowser/results:/results
