@@ -45,7 +45,7 @@ jobs:
     steps:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
-          python - m robot --version
+          python3 - m robot --version
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
