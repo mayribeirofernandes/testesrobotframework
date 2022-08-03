@@ -20,22 +20,22 @@ jobs:
         with:
           name: reports
           path: ${{ github.workspace }}/reports
-    run_robot_framework_selenium_tests_by_docker:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-        - name: Create folder for reports
-          run: mkdir reports
-        - name: Run Robot Framework Tests
-          run: |
-            docker run \
-              -v ${PWD}/reports:/opt/robotframework/reports:Z \
-              -v ${PWD}/ExemploSelenium:/opt/robotframework/tests:Z \
-              ppodgorsek/robot-framework:latest
-        - name: Upload test results
-          uses: actions/upload-artifact@v1
-          if: always()
-          with:
-            name: reports
-            path: ${{ github.workspace }}/reports
+  run_robot_framework_selenium_tests_by_docker:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create folder for reports
+        run: mkdir reports
+      - name: Run Robot Framework Tests
+        run: |
+          docker run \
+            -v ${PWD}/reports:/opt/robotframework/reports:Z \
+            -v ${PWD}/ExemploSelenium:/opt/robotframework/tests:Z \
+            ppodgorsek/robot-framework:latest
+      - name: Upload test results
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: reports
+          path: ${{ github.workspace }}/reports
