@@ -41,11 +41,16 @@ jobs:
   browser_test:
     runs-on: ubuntu-latest
     container:
-      image: marketsquare/robotframework-browser
+      image: marketsquare/robotframework-browser:latest
+      options:
+        --ipc=host --user pwuser --security-opt seccomp=seccomp_profile.json
+      volumes:
+        - ${{ github.workspace }}/ExemploBrowser:/test
+        - ${{ github.workspace }}/ExemploBrowser/results:/results
     steps:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
-          python3 -m robot --version
+          robot -d /results /test
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
