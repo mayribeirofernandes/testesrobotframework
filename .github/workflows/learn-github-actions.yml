@@ -10,11 +10,11 @@ jobs:
         uses: joonvena/robotframework-docker-action@v1.0
         env:
           BROWSER: chrome
-          ROBOT_TESTS_DIR: ./ExemploSelenium
-          ROBOT_REPORTS_DIR: ./reports
+          ROBOT_TESTS_DIR: ExemploSelenium
+          ROBOT_REPORTS_DIR: Reports
       - name: Upload test results
         uses: actions/upload-artifact@v1
         if: always()
         with:
           name: reports
-          path: ./reports
+          path: Reports
