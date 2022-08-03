@@ -7,8 +7,8 @@ jobs:
       image: 'Dockerfile'
       run: robot -d ${{ github.workspace }}/results ${{ github.workspace }}/ExemploAPI_ServeRest/Exemplo_API_ServeRest.robot
     - name: Upload Tests Results
-        uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: reports
-          path: ${{ github.workspace }}/results
+      uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: reports
+        path: ${{ github.workspace }}/results
