@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
-          robot -d ${{ github.workspace }}/ExemploBrowser/results ${{ github.workspace }}/ExemploBrowser
+          robot -d ${{ github.workspace }}/ExemploBrowser/results --ipc=host --security-opt seccomp=seccomp_profile.json ${{ github.workspace }}/ExemploBrowser
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
