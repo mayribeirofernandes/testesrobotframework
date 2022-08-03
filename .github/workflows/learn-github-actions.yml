@@ -1,41 +1,14 @@
 name: robot_test
 on: [push]
 jobs:
-  run_robot_framework_selenium_tests_by_action:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Create folder for reports
-        run: mkdir reports
-      - name: Run Robot Framework Tests
-        uses: joonvena/robotframework-docker-action@v1.0
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/ExemploSelenium
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
-      - name: Upload test results
-        uses: actions/upload-artifact@v1
-        if: always()
-        with:
-          name: reports
-          path: ${{ github.workspace }}/reports
   run_robot_framework_selenium_tests_by_docker:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Create folder for reports
-        run: mkdir reports
-      - name: Run Robot Framework Tests
-        run: |
-          docker run \
-            -v ${PWD}/reports:/opt/robotframework/reports:Z \
-            -v ${PWD}/ExemploSelenium:/opt/robotframework/tests:Z \
-            ppodgorsek/robot-framework:latest
-      - name: Upload test results
+    - name: Run Robot Framework API Tests
+      using: 'docker'
+      image: 'Dockerfile'
+      run: robot -d ${{ github.workspace }}/results ${{ github.workspace }}/ExemploAPI_ServeRest/Exemplo_API_ServeRest.robot
+    - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
         with:
           name: reports
-          path: ${{ github.workspace }}/reports
+          path: ${{ github.workspace }}/results
