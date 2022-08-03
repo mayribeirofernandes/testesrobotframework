@@ -3,8 +3,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 'docker'
-      image: 'Dockerfile'    
+    container:
+      image: Dockerfile
     steps:
       - name: Run Robot Framework API Tests        
         run: robot -d ${{ github.workspace }}/results ${{ github.workspace }}/ExemploAPI_ServeRest/Exemplo_API_ServeRest.robot
