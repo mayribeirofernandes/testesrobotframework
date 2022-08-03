@@ -28,6 +28,15 @@ jobs:
         with:
           name: reports
           path: ${{ github.workspace }}/ExemploAPI_ServeRest/results
+      - name: Download Tests Results
+        uses: actions/download-artifact@v1
+        with:
+          name: reports
+      - name: Send Report to Commit
+        uses: joonvena/robotframework-reporter-action@v2.1
+        with:
+          report_path: reports
+          gh_access_token: ${{ secrets.GITHUB_TOKEN }}
 
   browser_test:
     runs-on: ubuntu-latest
@@ -36,7 +45,7 @@ jobs:
     steps:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
-          bash -c "robot -d ${{ github.workspace }}/ExemploBrowser/results --ipc=host --user pwuser --security-opt seccomp=seccomp_profile.json ${{ github.workspace }}/ExemploBrowser"
+          robot --version
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
