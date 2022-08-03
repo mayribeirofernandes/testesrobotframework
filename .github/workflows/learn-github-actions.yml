@@ -1,7 +1,7 @@
-name: robot_test
+name: robot_tests
 on: [push]
 jobs:
-  tests:
+  build:
     runs-on: ubuntu-latest
     container: 'docker'
       image: 'Dockerfile'    
