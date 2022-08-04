@@ -42,9 +42,11 @@ jobs:
       - name: Run Robot Framework Web Tests with Library Browser
         run: |
           docker run --rm -v ${{ github.workspace }}/ExemploBrowser/:/test \
-          --ipc=host --security-opt seccomp=${{ github.workspace }}/ExemploBrowser/seccomp_profile.json \
+          -v ${{ github.workspace }}/ExemploBrowser/results:/test/output \
+          --ipc=host --user pwuser --security-opt \
+          seccomp=${{ github.workspace }}/ExemploBrowser/seccomp_profile.json \
           marketsquare/robotframework-browser:latest \
-          bash -c "robot -W 180 /test"
+          bash -c "robot -o NONE /test"
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
