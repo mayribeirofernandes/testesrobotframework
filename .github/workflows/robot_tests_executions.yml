@@ -45,7 +45,7 @@ jobs:
           --ipc=host --user pwuser --security-opt \
           seccomp=${{ github.workspace }}/ExemploBrowser/seccomp_profile.json \
           marketsquare/robotframework-browser:latest \
-          bash -c "robot -d /test"
+          bash -c "robot -W 180 /test"
       - name: Upload Tests Results
         uses: actions/upload-artifact@v1
         if: always()
