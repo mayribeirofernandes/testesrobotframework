@@ -20,10 +20,11 @@ Testar a API pública de estudos serverest
 
 *** Keywords ***
 Cria dados aleatórios do usuário
-    ${RANDOM_NOME}    FakerLibrary.Name
+    ${RANDOM_NOME_FIRST}   FakerLibrary.First Name
+    ${RANDOM_NOME_LAST}    FakerLibrary.Last Name
     ${RANDOM_EMAIL}   FakerLibrary.Email
     ${RANDOM_PWD}     FakerLibrary.Password
-    ${USUARIO}    Create Dictionary    nome=${RANDOM_NOME}  email=${RANDOM_EMAIL}  senha=${RANDOM_PWD}
+    ${USUARIO}    Create Dictionary    nome=${RANDOM_NOME_FIRST} ${RANDOM_NOME_LAST}  email=${RANDOM_EMAIL}  senha=${RANDOM_PWD}
     Set Suite Variable    ${USUARIO}
 
 Iniciar sessão na API serverest
@@ -57,12 +58,10 @@ Cadastrar um produto
 
 Listar o produto cadastrado
     ${HEADERS}   Create Dictionary  Authorization=${TOKEN}
-    ${PARAMS}    Create Dictionary  _id=${ID_PRODUTO_CADASTRADO}
-    ${RESPONSE}  GET On Session     alias=${ALIAS}    url=produtos   params=${PARAMS}  headers=${HEADERS}
+    ${RESPONSE}  GET On Session     alias=${ALIAS}    url=produtos/${ID_PRODUTO_CADASTRADO}  headers=${HEADERS}
     Log   Resposta Retornada: ${\n}${RESPONSE.text}
-    Dictionary Should Contain Item    ${RESPONSE.json()}    quantidade   1
-    Dictionary Should Contain Item    ${RESPONSE.json()["produtos"][0]}    nome        ${RANDOM_PROD}
-    Dictionary Should Contain Item    ${RESPONSE.json()["produtos"][0]}    preco       155
-    Dictionary Should Contain Item    ${RESPONSE.json()["produtos"][0]}    descricao   meu produto de teste
-    Dictionary Should Contain Item    ${RESPONSE.json()["produtos"][0]}    quantidade  10
-    Dictionary Should Contain Key     ${RESPONSE.json()["produtos"][0]}    _id
+    Dictionary Should Contain Item    ${RESPONSE.json()}    nome        ${RANDOM_PROD}
+    Dictionary Should Contain Item    ${RESPONSE.json()}    preco       155
+    Dictionary Should Contain Item    ${RESPONSE.json()}    descricao   meu produto de teste
+    Dictionary Should Contain Item    ${RESPONSE.json()}    quantidade  10
+    Dictionary Should Contain Key     ${RESPONSE.json()}    _id
